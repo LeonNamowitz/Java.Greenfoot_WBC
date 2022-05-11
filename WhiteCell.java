@@ -15,6 +15,7 @@ public class WhiteCell extends Actor
     public void act() 
     {
         checkKeyPress();
+        checkCollision();
     }
     
     /**
@@ -31,5 +32,21 @@ public class WhiteCell extends Actor
         {
             setLocation(getX(), getY()+4);
         }
+    }
+
+    private void checkCollision()
+    {
+        if (isTouching(Bacteria.class)) {
+            removeTouching(Bacteria.class);
+            Greenfoot.playSound("slurp.wav");
+        }
+        else if (isTouching(Virus.class))  {
+            Greenfoot.playSound("game-over.wav");
+            Bloodstream bloodstream = (Bloodstream) getWorld();
+            PopUp ending = new PopUp("GameOver");
+            bloodstream.addObject(ending, bloodstream.getWidth()/2, bloodstream.getHeight()/2);
+            removeTouching(WhiteCell.class);
+            Greenfoot.stop();
+        } 
     }
 }

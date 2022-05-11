@@ -1,28 +1,28 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Bacteria fload along in the bloodstream. They are bad. Best to destroy
- * them if you can.
+ * Write a description of class RedCell here.
  * 
- * @author Michael Kölling
- * @version 0.1
+ * @author (your name) 
+ * @version (a version number or a date)
  */
-public class Bacteria extends Actor
+public class RedCell extends Actor
 {
     private int speed;
 
     /**
-     * Constructor. Nothing to do so far.
+     * Constructor. 
      */
-    public Bacteria()
+    public RedCell()
     {
-        speed = Greenfoot.getRandomNumber(2)+1;
+        setRotation(Greenfoot.getRandomNumber(360));
+        speed = Greenfoot.getRandomNumber(1)+1;
     }
 
     /**
      * Float along the bloodstream, slowly rotating.
      */
-    public void act() 
+    public void act()
     {
         setLocation(getX() - speed, getY());
         turn(1);
@@ -31,5 +31,7 @@ public class Bacteria extends Actor
         {
             getWorld().removeObject(this);
         }
-    }
+    }    
+
+
 }
