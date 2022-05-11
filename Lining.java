@@ -9,9 +9,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Lining extends Actor
 {
     /**
-     * Act - nothing to do.
+     * Moves the Lining objects to the left and removes them at the edge.
      */
     public void act() 
     {
+        setLocation(getX()-1, getY());
+
+        if (getX() == 0) 
+        {
+            getWorld().removeObject(this);
+        }
     }    
 }

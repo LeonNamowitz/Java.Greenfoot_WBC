@@ -25,10 +25,14 @@ public class Bloodstream extends World
      */
     public void act()
     {
-        if (Greenfoot.getRandomNumber(100) < 3)
-        {
+        if (Greenfoot.getRandomNumber(100) < 3) {
             addObject(new Bacteria(), 779, Greenfoot.getRandomNumber(360));
         }
+        if (Greenfoot.getRandomNumber(100) < 1) {
+            addObject(new Lining(), getWidth(), 1);
+            addObject(new Lining(), getWidth(), getHeight()-1);            
+        }
+
     }
     
     /**
