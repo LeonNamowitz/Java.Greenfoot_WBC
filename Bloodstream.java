@@ -9,6 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bloodstream extends World
 {
+    int scoreValue = 0;
+    Counter scoreCounter = new Counter(0);
 
     /**
      * Constructor: Set up the starting objects.
@@ -25,6 +27,7 @@ public class Bloodstream extends World
      */
     public void act()
     {
+        scoreCounter.updateScoreCounter(scoreValue);   
         if (Greenfoot.getRandomNumber(100) < 3) {
             addObject(new Bacteria(), getWidth()-1, Greenfoot.getRandomNumber(360));
         }
@@ -38,6 +41,11 @@ public class Bloodstream extends World
         if (Greenfoot.getRandomNumber(100) < 6) {
             addObject(new RedCell(), getWidth()-1, Greenfoot.getRandomNumber(360));
         }
+    }
+
+    public void changeScore(int value)
+    {
+        scoreValue += value;
     }
     
     /**
@@ -71,5 +79,7 @@ public class Bloodstream extends World
         addObject(border, 0, 180);
         Border border2 = new Border();
         addObject(border2, 770, 180);
+
+        addObject(scoreCounter, 200, 100);
     }
 }

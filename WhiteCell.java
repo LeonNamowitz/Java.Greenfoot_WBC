@@ -9,11 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WhiteCell extends Actor
 {
+    public int scoreValue = 0;
+
     /**
      * Act: move up and down when cursor keys are pressed.
      */
     public void act() 
     {
+        // scoreValue = 0;
         checkKeyPress();
         checkCollision();
     }
@@ -36,13 +39,15 @@ public class WhiteCell extends Actor
 
     private void checkCollision()
     {
+        Bloodstream bloodstream = (Bloodstream) getWorld();
         if (isTouching(Bacteria.class)) {
             removeTouching(Bacteria.class);
             Greenfoot.playSound("slurp.wav");
+            scoreValue++;
+            bloodstream.changeScore(scoreValue);
         }
         else if (isTouching(Virus.class))  {
             Greenfoot.playSound("game-over.wav");
-            Bloodstream bloodstream = (Bloodstream) getWorld();
             PopUp ending = new PopUp("GameOver");
             bloodstream.addObject(ending, bloodstream.getWidth()/2, bloodstream.getHeight()/2);
             removeTouching(WhiteCell.class);

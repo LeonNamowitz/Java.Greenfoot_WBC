@@ -23,5 +23,5 @@ public class PopUp extends Actor
         GreenfootImage end = new GreenfootImage("GAME OVER", 40, Color.WHITE, Color.BLACK);
         setImage(end);
     }
-
+    
 }
