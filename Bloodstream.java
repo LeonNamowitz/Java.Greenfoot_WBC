@@ -45,7 +45,7 @@ public class Bloodstream extends World
 
     public void changeScore(int value)
     {
-        scoreValue += value;
+        scoreValue = value;
     }
     
     /**
