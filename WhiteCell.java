@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WhiteCell extends Actor
 {
-    public int scoreValue = 0;
+    // public int scoreValue = 0;
 
     /**
      * Act: move up and down when cursor keys are pressed.
@@ -29,11 +29,18 @@ public class WhiteCell extends Actor
         if (Greenfoot.isKeyDown("up")) 
         {
             setLocation(getX(), getY()-4);
-        }
-        
+        }    
         if (Greenfoot.isKeyDown("down")) 
         {
             setLocation(getX(), getY()+4);
+        }
+        if (Greenfoot.isKeyDown("left")) 
+        {
+            setLocation(getX()-4, getY());
+        }
+        if (Greenfoot.isKeyDown("right"))
+        {
+            setLocation(getX()+4, getY());
         }
     }
 
@@ -43,15 +50,11 @@ public class WhiteCell extends Actor
         if (isTouching(Bacteria.class)) {
             removeTouching(Bacteria.class);
             Greenfoot.playSound("slurp.wav");
-            scoreValue++;
-            bloodstream.changeScore(scoreValue);
+            bloodstream.changeScore(20);
         }
         else if (isTouching(Virus.class))  {
-            Greenfoot.playSound("game-over.wav");
-            PopUp ending = new PopUp("GameOver");
-            bloodstream.addObject(ending, bloodstream.getWidth()/2, bloodstream.getHeight()/2);
-            removeTouching(WhiteCell.class);
-            Greenfoot.stop();
+            removeTouching(Virus.class);
+            bloodstream.changeScore(-100);
         } 
     }
 }

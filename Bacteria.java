@@ -29,7 +29,10 @@ public class Bacteria extends Actor
         
         if (getX() == 0) 
         {
+            Bloodstream bloodstream = (Bloodstream) getWorld();
+            bloodstream.changeScore(-15);
             getWorld().removeObject(this);
+            
         }
     }
 }

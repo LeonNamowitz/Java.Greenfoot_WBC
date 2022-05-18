@@ -11,6 +11,8 @@ public class Bloodstream extends World
 {
     int scoreValue = 0;
     Counter scoreCounter = new Counter(0);
+    int time = 200;
+    Counter timeCounter = new Counter(time);
 
     /**
      * Constructor: Set up the starting objects.
@@ -18,7 +20,7 @@ public class Bloodstream extends World
     public Bloodstream()
     {    
         super(780, 360, 1); 
-        setPaintOrder(Border.class);
+        setPaintOrder(PopUp.class, Counter.class, Border.class);
         prepare();
     }
 
@@ -27,7 +29,23 @@ public class Bloodstream extends World
      */
     public void act()
     {
-        scoreCounter.updateScoreCounter(scoreValue);   
+        checkGameState();
+        randomSpawning();
+        updateCounters();
+    }
+
+    public void checkGameState()
+    {
+        if (scoreValue < 0) {
+            looseGame();
+        }
+        if (time <= 0)  {
+            winGame();
+        }
+    }
+
+    public void randomSpawning()
+    {
         if (Greenfoot.getRandomNumber(100) < 3) {
             addObject(new Bacteria(), getWidth()-1, Greenfoot.getRandomNumber(360));
         }
@@ -45,7 +63,14 @@ public class Bloodstream extends World
 
     public void changeScore(int value)
     {
-        scoreValue = value;
+        scoreValue += value;
+    }
+
+    public void updateCounters()
+    {
+        scoreCounter.updateScoreCounter(scoreValue);  
+        timeCounter.updateTimeCounter(time);
+        time--; 
     }
     
     /**
@@ -81,5 +106,21 @@ public class Bloodstream extends World
         addObject(border2, 770, 180);
 
         addObject(scoreCounter, getWidth()/2, 15);
+        addObject(timeCounter, 150, 15);
+    }
+
+    public void looseGame()
+    {
+        Greenfoot.playSound("game-over.wav");
+        PopUp badEnding = new PopUp("GameOver", 0);
+        addObject(badEnding, getWidth()/2, getHeight()/2);
+        Greenfoot.stop();
+    }
+
+    public void winGame()
+    {
+        PopUp goodEnding = new PopUp("YouWon", scoreValue);
+        addObject(goodEnding, getWidth()/2, getHeight()/2);
+        Greenfoot.stop();
     }
 }

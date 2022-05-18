@@ -11,7 +11,7 @@ public class Counter extends Actor
 {
     int value = 0;
     DecimalFormat timeFormat = new DecimalFormat("0.00");
-    public static double lastTime;
+    // public static double lastTime;
 
     public Counter(int value)
     {
@@ -31,9 +31,14 @@ public class Counter extends Actor
     }
 
     // for transparancy: new Color(0, 0, 0, 0)
-    public void updateScoreCounter(int newScore)
+    public void updateScoreCounter(int value)
     {
-        setImage(new GreenfootImage("Score: " + newScore, 24, Color.WHITE, new Color(0,0,0,0)));
+        setImage(new GreenfootImage("Score: " + value, 24, Color.WHITE, new Color(0,0,0,0)));
+    }
+
+    public void updateTimeCounter(int value)
+    {
+        setImage(new GreenfootImage("Time:" + value, 24, Color.BLUE, Color.WHITE));
     }
 
     // public void updateLivesCounter(int newLives)
@@ -49,9 +54,9 @@ public class Counter extends Actor
     //     lastTime = newTime;
     // }
 
-    public static double returnTime()
-    {
-        return(lastTime);
-    }
+    // public static double returnTime()
+    // {
+    //     return(lastTime);
+    // }
 
 }
