@@ -80,6 +80,6 @@ public class Bloodstream extends World
         Border border2 = new Border();
         addObject(border2, 770, 180);
 
-        addObject(scoreCounter, 200, 100);
+        addObject(scoreCounter, getWidth()/2, 15);
     }
 }
