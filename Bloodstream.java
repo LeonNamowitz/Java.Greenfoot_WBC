@@ -11,7 +11,7 @@ public class Bloodstream extends World
 {
     int scoreValue = 0;
     Counter scoreCounter = new Counter(0);
-    int time = 200;
+    int time = 100;
     Counter timeCounter = new Counter(time);
 
     /**
@@ -121,6 +121,7 @@ public class Bloodstream extends World
     {
         PopUp goodEnding = new PopUp("YouWon", scoreValue);
         addObject(goodEnding, getWidth()/2, getHeight()/2);
+        // Greenfoot.ask("test:");
         Greenfoot.stop();
     }
 }
